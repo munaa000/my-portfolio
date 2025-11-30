@@ -1,38 +1,284 @@
-.App {
-  text-align: center;
+/* -----------------------------------
+   Fonts & Global Settings
+----------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+:root {
+    --primary-color: #0077b6;
+    --secondary-color: #444;
+    --background-color: #f7f9fc;
+    --sidebar-bg: #e9ecef;
+    --border-color: #dee2e6;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+    margin: 0;
+    font-family: 'Noto Sans KR', 'Roboto', sans-serif;
+    line-height: 1.6;
+    background-color: var(--background-color);
+    color: var(--secondary-color);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: 0.2s;
+}
+a:hover {
+    color: #005f91;
+    text-decoration: underline;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+
+/* -----------------------------------
+   App Container & Buttons
+----------------------------------- */
+.app-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 10px;
+    min-height: 100vh;
 }
 
-.App-link {
-  color: #61dafb;
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.action-buttons button {
+    padding: 10px 25px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.95em;
+    transition: background-color 0.3s, transform 0.1s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.print-btn {
+    background-color: var(--primary-color);
+    color: white;
+}
+.print-btn:hover:not(:disabled) {
+    background-color: #005f91;
+    transform: translateY(-1px);
+}
+
+.edit-toggle-btn {
+    background-color: #28a745;
+    color: white;
+}
+.edit-toggle-btn:hover {
+    background-color: #1e7e34;
+    transform: translateY(-1px);
+}
+
+.action-buttons button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+
+/* -----------------------------------
+   Resume Layout (PC)
+----------------------------------- */
+.resume-wrapper {
+    width: 100%;
+    max-width: 900px;
+    background: white;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.resume-layout {
+    display: flex;
+    flex-direction: row;
+    min-height: 800px;
+}
+
+.sidebar {
+    flex: 0 0 250px;
+    background-color: var(--sidebar-bg);
+    padding: 30px 25px;
+}
+
+.main-content {
+    flex: 1;
+    padding: 30px 40px;
+}
+
+
+/* -----------------------------------
+   Mobile Layout
+----------------------------------- */
+@media (max-width: 768px) {
+    .resume-layout {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+        padding: 20px;
+        border-bottom: 2px solid var(--border-color);
+    }
+    .main-content {
+        padding: 20px;
+    }
+
+    .personal-info-container {
+        text-align: center;
+    }
+}
+
+
+/* -----------------------------------
+   Section Titles
+----------------------------------- */
+.section-title {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.6em;
+    color: var(--primary-color);
+    border-bottom: 3px solid var(--primary-color);
+    padding-bottom: 5px;
+    margin: 35px 0 20px;
+    font-weight: 700;
+}
+
+
+/* -----------------------------------
+   Personal Info (photo included)
+----------------------------------- */
+.personal-info-container {
+    text-align: left;
+}
+
+.personal-info-container img {
+    display: block;
+    width: 120px !important;
+    height: 160px !important;
+    object-fit: cover;
+    border: 3px solid white;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    margin: 0 auto 15px;
+}
+
+.personal-info-container h1 {
+    font-size: 2.2em;
+    color: #222;
+    margin-bottom: 5px;
+}
+
+.personal-info-container p {
+    margin: 3px 0;
+    font-size: 0.95em;
+}
+
+.personal-info-container hr {
+    border-top: 1px solid var(--border-color);
+    margin: 15px 0 20px;
+}
+
+
+/* -----------------------------------
+   Lists (Experience / Projects)
+----------------------------------- */
+.main-content h4 {
+    color: #333;
+    font-size: 1.1em;
+    margin: 0 0 3px;
+}
+
+.item-period {
+    font-size: 0.9em;
+    color: #6c757d;
+    margin: 5px 0 10px;
+}
+
+.projects-list-item,
+.experience-list-item {
+    margin-bottom: 25px;
+}
+
+.projects-list-item {
+    border-left: 4px solid var(--primary-color);
+    padding-left: 15px;
+}
+
+
+/* -----------------------------------
+   Skills (tags)
+----------------------------------- */
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.skills-container span {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 5px 12px;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+
+/* -----------------------------------
+   Editable Mode (Editor)
+----------------------------------- */
+.editable-section {
+    padding: 15px;
+    border: 1px dashed var(--border-color);
+    margin-bottom: 20px;
+    border-radius: 6px;
+    background-color: #fff;
+}
+
+.editable-section input[type="text"],
+.editable-section textarea {
+    width: 95%;
+    border: 1px solid var(--border-color);
+    padding: 10px;
+    border-radius: 4px;
+    transition: border-color 0.2s;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.editable-section input:focus,
+.editable-section textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0,119,182,0.1);
+    outline: none;
+}
+
+.editable-section label {
+    font-weight: 700;
+    color: var(--primary-color);
+    font-size: 0.95em;
+    margin-top: 10px;
+    display: block;
+}
+
+
+/* -----------------------------------
+   Print Mode
+----------------------------------- */
+@media print {
+    .app-container { padding: 0; }
+    .action-buttons { display: none; }
+    .resume-wrapper { 
+        box-shadow: none; 
+        border-radius: 0; 
+        max-width: none; 
+        width: 100%; 
+    }
+    .sidebar { 
+        background-color: #f7f9fc; 
+    }
 }
